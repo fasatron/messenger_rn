@@ -33,6 +33,7 @@ module.exports = {
         'react/jsx-filename-extension': 'off',
         'react/jsx-indent': ['warn', 2],
         'react/jsx-fragments': 'off',
+        'react/no-unstable-nested-components': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
         'jsx-quotes': ['warn', 'prefer-single'],
