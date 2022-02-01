@@ -12,6 +12,8 @@ target 'messenger_rn' do
     :hermes_enabled => false
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'messenger_rnTests' do
     inherit! :complete
     # Pods for testing
