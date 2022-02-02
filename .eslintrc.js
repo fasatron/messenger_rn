@@ -1,7 +1,10 @@
 module.exports = {
   root: true,
-  extends: 'airbnb',
+  extends: ['airbnb', 'airbnb-typescript'],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: ['tsconfig.json'],
+},
   plugins: [
     '@typescript-eslint',
     'react',
@@ -25,6 +28,7 @@ module.exports = {
             requireLast: false,
           },
         }],
+        '@typescript-eslint/no-use-before-define': 'off',
         'no-shadow': 'off',
         'no-undef': 'off',
         'no-unused-vars': 'error',
@@ -33,6 +37,7 @@ module.exports = {
         'react/jsx-filename-extension': 'off',
         'react/jsx-indent': ['warn', 2],
         'react/jsx-fragments': 'off',
+        'react/require-default-props': 'off',
         'react/no-unstable-nested-components': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
