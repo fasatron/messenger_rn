@@ -9,19 +9,29 @@ import {
   CallsScreens,
   SettingsScreen,
 } from '@screens'
+import { theme } from '@theme'
 
 const Tab = createBottomTabNavigator()
 
+const getIconColor = (focused: boolean) => (focused
+  ? theme.color.accent
+  : theme.color.secondary
+)
+
 export const AppNavigator = () => (
   <NavigationContainer>
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      tabBarShowLabel: false,
+    }}
+    >
       <Tab.Screen
         name='Chats'
         component={ChatsScreens}
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'chatbubble' : 'chatbubble-outline'}
+              name='chatbubble'
+              color={getIconColor(focused)}
               size={24}
             />
           ),
@@ -33,8 +43,9 @@ export const AppNavigator = () => (
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'search' : 'search-outline'}
+              name='search'
               size={24}
+              color={getIconColor(focused)}
             />
           ),
         }}
@@ -45,8 +56,9 @@ export const AppNavigator = () => (
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'call' : 'call-outline'}
+              name='call'
               size={24}
+              color={getIconColor(focused)}
             />
           ),
         }}
@@ -57,8 +69,9 @@ export const AppNavigator = () => (
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'person-circle' : 'person-circle-outline'}
+              name='person-circle'
               size={24}
+              color={getIconColor(focused)}
             />
           ),
         }}
