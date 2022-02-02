@@ -30,6 +30,8 @@
 		340AFA939AB04BF1917F82AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC3C914E935141369DA72A52 /* Octicons.ttf */; };
 		95A9C79B205D45F1BFD8DB2A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EF4F2FC375E4FAE94099035 /* SimpleLineIcons.ttf */; };
 		068789F65CDB448495B66168 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BB6F38AEF2342F6A529CB4C /* Zocial.ttf */; };
+		1F8AC83DFE664CEEB22C8977 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01979B1436804574A744BE45 /* PlusJakartaSans-Bold.ttf */; };
+		637D10CC9C0D4C408ED8455D /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 659B997F69204A32B388EA36 /* PlusJakartaSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		CC3C914E935141369DA72A52 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9EF4F2FC375E4FAE94099035 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7BB6F38AEF2342F6A529CB4C /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		01979B1436804574A744BE45 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; name = "PlusJakartaSans-Bold.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		659B997F69204A32B388EA36 /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; name = "PlusJakartaSans-Regular.ttf"; path = "../src/assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,8 @@
 				CC3C914E935141369DA72A52 /* Octicons.ttf */,
 				9EF4F2FC375E4FAE94099035 /* SimpleLineIcons.ttf */,
 				7BB6F38AEF2342F6A529CB4C /* Zocial.ttf */,
+				01979B1436804574A744BE45 /* PlusJakartaSans-Bold.ttf */,
+				659B997F69204A32B388EA36 /* PlusJakartaSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -318,6 +324,8 @@
 				340AFA939AB04BF1917F82AC /* Octicons.ttf in Resources */,
 				95A9C79B205D45F1BFD8DB2A /* SimpleLineIcons.ttf in Resources */,
 				068789F65CDB448495B66168 /* Zocial.ttf in Resources */,
+				1F8AC83DFE664CEEB22C8977 /* PlusJakartaSans-Bold.ttf in Resources */,
+				637D10CC9C0D4C408ED8455D /* PlusJakartaSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
