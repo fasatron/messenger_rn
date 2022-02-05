@@ -1,19 +1,22 @@
-export const theme = {
-  color: {
-    accent: '#2F80ED',
-    primary: '#1B1A57',
-    secondary: '#4F5E7B',
-    background: '#F7F7F7',
+export const colors = {
+  accent: '#2F80ED',
+  primary: '#1B1A57',
+  secondary: '#4F5E7B',
+  error: '#ff0000',
+}
+
+export const typography = {
+  fontSize: {
+    sm: 12,
+    md: 14,
+    lg: 18,
   },
-  font: {
-    family: {
-      regular: 'PlusJakartaSans-Regular',
-      bold: 'PlusJakartaSans-Bold',
-    },
-    size: {
-      small: 12,
-      medium: 14,
-      big: 18,
-    },
+  fontFamily: {
+    regular: 'PlusJakartaSans-Regular',
+    bold: 'PlusJakartaSans-Bold',
   },
+}
+
+export const spacings = {
+  screen: 15,
 }
