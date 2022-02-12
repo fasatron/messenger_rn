@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-useless-escape
 const EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
 
-const PASSWORD_MIN_LENGTH = 1
+const PASSWORD_MIN_LENGTH = 8
 const PASSWORD_PATTERN = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
 
 export const validators = {
