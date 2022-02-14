@@ -1,17 +1,15 @@
 import React, { FC } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
-import { FormProvider } from 'react-hook-form'
 
 import { spacings } from '@theme'
-import { validators } from '@utils'
-import { Button, FormInput, Text } from '@components'
+import { Text } from '@components'
 
 import { useSignInScreen } from './hooks'
+import { Form } from './Form'
 
 export const SignInScreen: FC = () => {
   const {
-    formMethods,
-    handleButtonPress,
+    onSubmit,
     handleSignUpPress,
     handleForgotPasswordPress,
   } = useSignInScreen()
@@ -23,41 +21,7 @@ export const SignInScreen: FC = () => {
           contentContainerStyle={styles.contentContainer}
           showsVerticalScrollIndicator={false}
         >
-          <Text
-            lg
-            bold
-            style={styles.title}
-            accessibilityRole='header'
-          >
-            Sign In
-          </Text>
-          <FormProvider
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...formMethods}
-          >
-            <FormInput
-              keyboardType='email-address'
-              autoComplete='email'
-              placeholder='Email'
-              name='email'
-              rules={validators.email}
-            />
-
-            <FormInput
-              keyboardType='default'
-              textContentType='password'
-              secureTextEntry
-              placeholder='Password'
-              name='password'
-              rules={validators.password}
-            />
-          </FormProvider>
-
-          <Button
-            title='Log In'
-            style={styles.button}
-            onPress={handleButtonPress}
-          />
+          <Form onSubmit={onSubmit} />
           <Text
             bold
             accent
@@ -94,13 +58,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: 'center',
-  },
-  title: {
-    marginBottom: 20,
-  },
-  button: {
-    width: '100%',
-    marginVertical: 15,
   },
   forgotPassword: {
     marginBottom: 15,

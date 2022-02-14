@@ -10,3 +10,20 @@ export enum Screens {
   Calls = 'Calls',
   Settings = 'Settings',
 }
+
+// eslint-disable-next-line no-useless-escape
+export const EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+export const PASSWORD_PATTERN = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
+export const PASSWORD_MIN_LENGTH = 8
+
+export const errorMessages = {
+  invalidEmail: 'Invalid email address',
+  emailRequired: 'Email is required',
+  smallPasswordLength: `Password length must be at least ${PASSWORD_MIN_LENGTH} characters`,
+  invalidPassword: 'The password must contain letters and numbers',
+  passwordRequired: 'Password is required',
+  passwordMismatch: 'Password mismatch',
+  firstNameRequired: 'First Name is required',
+  lastNameRequired: 'Last Name is required',
+  confirmPassword: 'Confirm your password',
+} as const

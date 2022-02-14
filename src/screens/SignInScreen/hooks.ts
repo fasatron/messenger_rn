@@ -1,23 +1,17 @@
-import { useEffect } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler } from 'react-hook-form'
 import { useNavigation } from '@react-navigation/native'
 
 import { Screens } from '@config'
 import { TAuthNavigationProp } from '@navigation'
 
-interface IFormData {
-  email: string,
-  password: string,
-  confirmPassword: string,
-  firstName: string,
-  lastName: string,
-}
+import { IFormData } from './types'
 
 export const useSignInScreen = () => {
-  const { navigate, addListener } = useNavigation<TAuthNavigationProp>()
+  const { navigate } = useNavigation<TAuthNavigationProp>()
 
-  const formMethods = useForm<IFormData>()
-  const { handleSubmit, reset } = formMethods
+  const onSubmit: SubmitHandler<IFormData> = ({ email, password }) => {
+    console.log('email', email, 'password', password)
+  }
 
   const handleForgotPasswordPress = () => {
     navigate(Screens.ForgotPassword)
@@ -27,19 +21,8 @@ export const useSignInScreen = () => {
     navigate(Screens.SignUp)
   }
 
-  const onSubmit: SubmitHandler<IFormData> = () => {
-
-  }
-
-  useEffect(() => {
-    const unsubscribe = addListener('focus', () => reset())
-
-    return unsubscribe
-  }, [addListener, reset])
-
   return {
-    formMethods,
-    handleButtonPress: handleSubmit(onSubmit),
+    onSubmit,
     handleSignUpPress,
     handleForgotPasswordPress,
   }

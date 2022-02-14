@@ -1,26 +1,27 @@
-// eslint-disable-next-line no-useless-escape
-const EMAIL_PATTERN = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
-
-const PASSWORD_MIN_LENGTH = 8
-const PASSWORD_PATTERN = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
+import {
+  EMAIL_PATTERN,
+  PASSWORD_MIN_LENGTH,
+  PASSWORD_PATTERN,
+  errorMessages,
+} from '@config'
 
 export const validators = {
   email: {
-    required: 'Email is required',
+    required: errorMessages.emailRequired,
     pattern: {
       value: EMAIL_PATTERN,
-      message: 'Incorrect email',
+      message: errorMessages.invalidEmail,
     },
   },
   password: {
-    required: 'Password is required',
+    required: errorMessages.passwordRequired,
     minLength: {
       value: PASSWORD_MIN_LENGTH,
-      message: `Password length must be at least ${PASSWORD_MIN_LENGTH} characters`,
+      message: errorMessages.smallPasswordLength,
     },
     pattern: {
       value: PASSWORD_PATTERN,
-      message: 'The password must contain letters and numbers',
+      message: errorMessages.invalidPassword,
     },
   },
-}
+} as const

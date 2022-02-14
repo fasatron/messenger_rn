@@ -15,17 +15,18 @@ interface IButtonProps extends TouchableOpacityProps {
 
 export const Button: FC<IButtonProps> = ({
   title,
-  onPress,
-  style,
-  disabled,
+  ...touchableOpacityProps
 }) => (
   <TouchableOpacity
-    onPress={onPress}
-    style={[styles.container, disabled && styles.disabled, style]}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...touchableOpacityProps}
+    style={[
+      styles.container,
+      touchableOpacityProps.disabled && styles.disabled,
+      touchableOpacityProps.style,
+    ]}
     accessibilityRole='button'
-    disabled={disabled}
   >
-
     <Text
       bold
       style={styles.title}
