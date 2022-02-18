@@ -2,6 +2,7 @@ import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'
 
 import { TAuthNavigationProp, TAuthParamsList } from '@navigation'
 import { Screens } from '@config'
+import { useAuthContext } from '@hooks'
 
 export const useConfirmEmailScreen = () => {
   const { navigate } = useNavigation<TAuthNavigationProp>()
@@ -10,13 +11,18 @@ export const useConfirmEmailScreen = () => {
       email,
     },
   } = useRoute<RouteProp<TAuthParamsList, Screens.ConfirmEmail>>()
+  const { confirmEmail, resendCode } = useAuthContext()
 
-  const handleConfirmPress = (code: string) => {
-    console.log('code', code, 'email', email)
+  const handleConfirmPress = async (code: string) => {
+    const res = await confirmEmail(email, code)
+
+    if (!res) return
+
+    navigate(Screens.SignIn)
   }
 
-  const handleResendPress = () => {
-
+  const handleResendPress = async () => {
+    await resendCode(email)
   }
 
   const handleBackToSignInPress = () => {

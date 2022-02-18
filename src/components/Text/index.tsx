@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Text as RNText, TextProps } from 'react-native'
 
 import { colors, typography } from '@theme'
@@ -15,7 +15,7 @@ interface ITextProps extends TextProps {
   error?: boolean,
 }
 
-export const Text = ({
+export const Text: FC<ITextProps> = ({
   sm,
   md = true,
   lg,
@@ -27,7 +27,7 @@ export const Text = ({
   error,
   style,
   ...textProps
-}: ITextProps) => (
+}) => (
   <RNText
   // eslint-disable-next-line react/jsx-props-no-spreading
     {...textProps}

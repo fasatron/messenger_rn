@@ -10,15 +10,24 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^4.4.1",
+    "@aws-amplify/core": "^4.3.14",
+    "@react-native-async-storage/async-storage": "^1.16.1",
+    "@react-native-community/netinfo": "^8.0.0",
+    "@react-native-picker/picker": "^2.2.1",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
+    "amazon-cognito-identity-js": "^5.2.6",
+    "aws-amplify": "^4.3.14",
+    "aws-amplify-react-native": "^6.0.2",
     "react": "17.0.2",
     "react-hook-form": "^7.27.0",
     "react-native": "0.67.2",
     "react-native-confirmation-code-field": "^7.3.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.11.1",
+    "react-native-toast-notifications": "^3.2.3",
     "react-native-vector-icons": "^9.0.0"
   },
   "devDependencies": {

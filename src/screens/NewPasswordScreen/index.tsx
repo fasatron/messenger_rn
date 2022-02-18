@@ -23,12 +23,20 @@ export const NewPasswordScreen: FC = () => {
         style={styles.title}
         accessibilityRole='header'
       >
-        Reset your password
+        Create new password
       </Text>
       <FormProvider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...formMethods}
       >
+        <FormInput
+          keyboardType='default'
+          autoComplete='email'
+          placeholder='Email'
+          name='email'
+          rules={validators.email}
+        />
+
         <FormInput
           keyboardType='default'
           textContentType='password'
@@ -37,6 +45,7 @@ export const NewPasswordScreen: FC = () => {
           name='password'
           rules={validators.password}
         />
+
         <FormInput
           keyboardType='default'
           textContentType='password'

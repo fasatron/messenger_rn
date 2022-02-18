@@ -1,7 +1,6 @@
 export enum Screens {
   SignIn = 'SignIn',
   SignUp = 'SignUp',
-  ForgotPassword = 'ForgotPassword',
   NewPassword = 'NewPassword',
   ConfirmEmail = 'ConfirmEmail',
   ConfirmPassword = 'ConfirmPassword',
@@ -26,4 +25,13 @@ export const errorMessages = {
   firstNameRequired: 'First Name is required',
   lastNameRequired: 'Last Name is required',
   confirmPassword: 'Confirm your password',
+} as const
+
+export const successMessages = {
+  passwordChanged: 'Password has been successfully changed',
+  accountCreated: 'Your account has been successfully created',
+} as const
+
+export const infoMessages = {
+  weSentCode: 'We have sent a verification code to your email',
 } as const

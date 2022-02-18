@@ -1,8 +1,14 @@
 import React, { FC } from 'react'
-import { StyleSheet, View, ScrollView } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native'
 
 import { spacings } from '@theme'
 import { Text } from '@components'
+import { useAuthContext } from '@hooks'
 
 import { useSignInScreen } from './hooks'
 import { Form } from './Form'
@@ -13,6 +19,16 @@ export const SignInScreen: FC = () => {
     handleSignUpPress,
     handleForgotPasswordPress,
   } = useSignInScreen()
+  const { isLoading } = useAuthContext()
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        style={styles.loader}
+        size='large'
+      />
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -64,5 +80,10 @@ const styles = StyleSheet.create({
   },
   bottomTextContainer: {
     flexDirection: 'row',
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

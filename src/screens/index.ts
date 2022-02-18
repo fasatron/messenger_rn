@@ -1,6 +1,5 @@
 export * from './SignInScreen'
 export * from './SignUpScreen'
-export * from './ForgotPasswordScreen'
 export * from './NewPasswordScreen'
 export * from './ConfirmEmailScreen'
 export * from './ConfirmPasswordScreen'

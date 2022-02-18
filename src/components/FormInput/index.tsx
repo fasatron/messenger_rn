@@ -38,6 +38,7 @@ export const FormInput: FC<IFormInputProps> = ({
         style={styles.input}
         placeholderTextColor={colors.secondary}
         autoCapitalize='none'
+        autoCorrect={false}
         onChangeText={field.onChange}
         onBlur={field.onBlur}
         value={field.value}

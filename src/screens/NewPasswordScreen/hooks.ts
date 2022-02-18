@@ -1,17 +1,21 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigation } from '@react-navigation/native'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
+import { TAuthNavigationProp } from '@navigation'
 
 import { Screens } from '@config'
 import { validators as baseValidators } from '@utils'
-import { TAuthNavigationProp } from '@navigation'
+import { useAuthContext } from '@hooks'
 
 interface IFormData {
+  email: string,
   password: string,
   confirmPassword: string,
 }
 
 export const useNewPasswordScreen = () => {
   const { navigate } = useNavigation<TAuthNavigationProp>()
+  const { forgotPassword } = useAuthContext()
 
   const formMethods = useForm<IFormData>()
   const { handleSubmit } = formMethods
@@ -30,11 +34,14 @@ export const useNewPasswordScreen = () => {
     navigate(Screens.SignIn)
   }
 
-  const onSubmit: SubmitHandler<IFormData> = ({ password, confirmPassword }) => {
-    console.log('password', password, 'confirmPassword', confirmPassword)
+  const onSubmit: SubmitHandler<IFormData> = async ({ email, password }) => {
+    const res = await forgotPassword(email)
+
+    if (!res) return
+
     navigate(Screens.ConfirmPassword, {
+      email,
       password,
-      confirmPassword,
     })
   }
 

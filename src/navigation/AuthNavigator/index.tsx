@@ -7,7 +7,6 @@ import {
   SignUpScreen,
   ConfirmEmailScreen,
   ConfirmPasswordScreen,
-  ForgotPasswordScreen,
   NewPasswordScreen,
 } from '@screens'
 
@@ -16,10 +15,9 @@ export type TAuthParamsList = {
   [Screens.SignUp]: undefined,
   [Screens.ConfirmEmail]: { email: string },
   [Screens.ConfirmPassword]: {
+    email: string,
     password: string,
-    confirmPassword: string,
   },
-  [Screens.ForgotPassword]: undefined,
   [Screens.NewPassword]: undefined,
 }
 
@@ -39,10 +37,6 @@ export const AuthNavigator: FC = () => (
     <AuthStackNavigator.Screen
       name={Screens.SignUp}
       component={SignUpScreen}
-    />
-    <AuthStackNavigator.Screen
-      name={Screens.ForgotPassword}
-      component={ForgotPasswordScreen}
     />
     <AuthStackNavigator.Screen
       name={Screens.NewPassword}
