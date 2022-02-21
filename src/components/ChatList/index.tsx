@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import subDays from 'date-fns/subDays'
 
@@ -69,7 +69,7 @@ const data = [
   },
 ]
 
-export const ChatList = () => (
+export const ChatList: FC = () => (
   <View style={styles.container}>
     <FlatList
       data={data}

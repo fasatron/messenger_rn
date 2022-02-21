@@ -5,9 +5,10 @@ export enum Screens {
   ConfirmEmail = 'ConfirmEmail',
   ConfirmPassword = 'ConfirmPassword',
   Chats = 'Chats',
-  Search = 'Search',
+  Contacts = 'Contacts',
   Calls = 'Calls',
   Settings = 'Settings',
+  ChatNavigator = 'ChatNavigator',
 }
 
 // eslint-disable-next-line no-useless-escape

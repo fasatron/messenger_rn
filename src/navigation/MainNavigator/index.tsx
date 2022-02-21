@@ -4,12 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { Screens } from '@config'
 import { colors, typography } from '@theme'
-import {
-  ChatsScreens,
-  SearchScreen,
-  CallsScreens,
-  SettingsScreen,
-} from '@screens'
+import { CallsScreens, SettingsScreen } from '@screens'
+import { ChatNavigator } from '@navigation'
 
 const Tab = createBottomTabNavigator()
 
@@ -18,39 +14,27 @@ const getIconColor = (focused: boolean) => (focused
   : colors.secondary
 )
 
+export const defaultHeaderTitleStyle = {
+  fontSize: typography.fontSize.lg,
+  color: colors.primary,
+}
+
 export const MainNavigator: FC = () => (
   <Tab.Navigator screenOptions={{
     tabBarShowLabel: false,
-    headerTitleAlign: 'left',
-    headerTitleStyle: {
-      fontSize: typography.fontSize.lg,
-      color: colors.primary,
-    },
+    headerTitleStyle: defaultHeaderTitleStyle,
   }}
   >
     <Tab.Screen
-      name={Screens.Chats}
-      component={ChatsScreens}
+      name={Screens.ChatNavigator}
+      component={ChatNavigator}
       options={{
+        headerShown: false,
         tabBarIcon: ({ focused }) => (
           <Ionicons
             name='chatbubble'
             color={getIconColor(focused)}
             size={24}
-          />
-        ),
-        headerTitle: 'Recent chats',
-      }}
-    />
-    <Tab.Screen
-      name={Screens.Search}
-      component={SearchScreen}
-      options={{
-        tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name='search'
-            size={24}
-            color={getIconColor(focused)}
           />
         ),
       }}
