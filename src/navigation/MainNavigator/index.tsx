@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { Screens } from '@config'
-import { colors } from '@theme'
+import { colors, typography } from '@theme'
 import {
   ChatsScreens,
   SearchScreen,
@@ -21,6 +21,11 @@ const getIconColor = (focused: boolean) => (focused
 export const MainNavigator: FC = () => (
   <Tab.Navigator screenOptions={{
     tabBarShowLabel: false,
+    headerTitleAlign: 'left',
+    headerTitleStyle: {
+      fontSize: typography.fontSize.lg,
+      color: colors.primary,
+    },
   }}
   >
     <Tab.Screen
@@ -34,6 +39,7 @@ export const MainNavigator: FC = () => (
             size={24}
           />
         ),
+        headerTitle: 'Recent chats',
       }}
     />
     <Tab.Screen

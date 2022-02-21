@@ -3,6 +3,7 @@ export const colors = {
   primary: '#1B1A57',
   secondary: '#4F5E7B',
   error: '#ff0000',
+  background: '#FBFBFB',
 }
 
 export const typography = {
