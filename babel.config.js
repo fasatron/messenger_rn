@@ -24,6 +24,8 @@ module.exports = {
           '@theme': './src/theme',
           '@config': './src/config',
           '@utils': './src/utils',
+          '@graphql': './src/graphql',
+          '@api': './src/api',
         },
       },
     ],

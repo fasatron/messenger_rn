@@ -3,11 +3,10 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  ActivityIndicator,
 } from 'react-native'
 
 import { spacings } from '@theme'
-import { Text } from '@components'
+import { Loader, Text } from '@components'
 import { useAuthContext } from '@hooks'
 
 import { useSignInScreen } from './hooks'
@@ -21,14 +20,7 @@ export const SignInScreen: FC = () => {
   } = useSignInScreen()
   const { isLoading } = useAuthContext()
 
-  if (isLoading) {
-    return (
-      <ActivityIndicator
-        style={styles.loader}
-        size='large'
-      />
-    )
-  }
+  if (isLoading) return <Loader />
 
   return (
     <View style={styles.container}>
@@ -80,10 +72,5 @@ const styles = StyleSheet.create({
   },
   bottomTextContainer: {
     flexDirection: 'row',
-  },
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 })

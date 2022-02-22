@@ -1,10 +1,15 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Auth, Hub } from 'aws-amplify'
-import { CognitoUser } from '@aws-amplify/auth'
+import {
+  Auth,
+  Hub,
+  API,
+  graphqlOperation,
+} from 'aws-amplify'
 import { HubCallback } from '@aws-amplify/core/lib/Hub'
 
 import { infoMessages, successMessages } from '@config'
 import { useToast } from '@hooks'
+import { createUser } from '@graphql/mutations'
 
 interface ISignUpParams {
   email: string,
@@ -19,8 +24,14 @@ interface IConfirmPasswordParams {
   code: string,
 }
 
+interface IAuthUser {
+  id: string,
+  name: string,
+  photoUrl: string | null,
+}
+
 export const useAuth = () => {
-  const [user, setUser] = useState<CognitoUser | null>(null)
+  const [user, setUser] = useState<IAuthUser | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const {
     showErrorMessage,
@@ -32,12 +43,19 @@ export const useAuth = () => {
     try {
       setIsLoading(true)
 
-      const authUser: CognitoUser | null = (
+      const authUser = (
         await Auth.currentAuthenticatedUser({ bypassCache: true })
       )
 
+      if (authUser) {
+        setUser({
+          id: authUser.attributes.sub,
+          name: `${authUser.attributes.given_name} ${authUser.attributes.family_name}`,
+          photoUrl: null,
+        })
+      }
+
       setIsLoading(false)
-      setUser(authUser)
     } catch (error) {
       setIsLoading(false)
       setUser(null)
@@ -72,6 +90,16 @@ export const useAuth = () => {
       })
 
       showInfoMessage(infoMessages.weSentCode)
+
+      const newUser = {
+        id: res.userSub,
+        name: `${firstName} ${lastName}`,
+        photoUrl: null,
+      }
+
+      await API.graphql(graphqlOperation(createUser, {
+        input: newUser,
+      }))
 
       return res
     } catch (error) {

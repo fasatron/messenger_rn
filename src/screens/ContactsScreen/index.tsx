@@ -1,13 +1,28 @@
 import React, { FC } from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { ContactList } from '@components'
+import { ContactList, Loader } from '@components'
 
-export const ContactsScreen: FC = () => (
-  <View style={styles.container}>
-    <ContactList />
-  </View>
-)
+import { useContactsScreen } from './hooks'
+
+export const ContactsScreen: FC = () => {
+  const {
+    handleContactPress,
+    contacts,
+    isLoading,
+  } = useContactsScreen()
+
+  if (isLoading) return <Loader />
+
+  return (
+    <View style={styles.container}>
+      <ContactList
+        contacts={contacts}
+        onContactPress={handleContactPress}
+      />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,23 +1,27 @@
 import React, { FC } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Pressable, View } from 'react-native'
 import Avatar from 'react-native-user-avatar'
 
 import { Text } from '@components'
+import { User } from '@api'
 
 interface IContactListItemProps {
-  user: {
-    photoUrl: string,
-    name: string,
-  },
+  contact: User,
+  onContactPress: (id: string) => void,
 }
 
 export const ContactListItem: FC<IContactListItemProps> = ({
-  user: {
+  contact: {
+    id,
     name,
     photoUrl,
   },
+  onContactPress,
 }) => (
-  <View style={styles.container}>
+  <Pressable
+    style={styles.container}
+    onPress={() => onContactPress(id)}
+  >
     <Avatar
       name={name}
       src={photoUrl}
@@ -26,7 +30,7 @@ export const ContactListItem: FC<IContactListItemProps> = ({
     <View style={styles.infoBlock}>
       <Text bold>{name}</Text>
     </View>
-  </View>
+  </Pressable>
 )
 
 export const styles = StyleSheet.create({

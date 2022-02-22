@@ -2,95 +2,26 @@ import React, { FC } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 
 import { spacings } from '@theme'
+import { User } from '@api'
 
 import { ContactListItem } from './ContactListItem'
 
-const data = [
-  {
-    id: 1,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 2,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 3,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 4,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 5,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 6,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 7,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 8,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 9,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 10,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 11,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 12,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 13,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 14,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-  {
-    id: 15,
-    photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-    name: 'Darlene Steward',
-  },
-]
+interface IContactListProps {
+  contacts: User[],
+  onContactPress: (id: string) => void,
+}
 
-export const ContactList: FC = () => (
+export const ContactList: FC<IContactListProps> = ({ contacts, onContactPress }) => (
   <View style={styles.container}>
     <FlatList
-      data={data}
+      data={contacts}
       renderItem={({ item }) => (
-        <ContactListItem user={item} />
+        <ContactListItem
+          contact={item}
+          onContactPress={onContactPress}
+        />
       )}
-      keyExtractor={({ id }) => String(id)}
+      keyExtractor={({ id }) => id}
     />
   </View>
 )

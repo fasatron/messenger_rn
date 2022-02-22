@@ -27,5 +27,7 @@ module.exports = {
     '^@config(.*)$': '<rootDir>/src/config$1',
     '^@config(.*)$': '<rootDir>/src/config$1',
     '^@utils(.*)$': '<rootDir>/src/utils$1',
+    '^@graphql(.*)$': '<rootDir>/src/graphql$1',
+    '^@api(.*)$': '<rootDir>/src/api$1',
   },
 }
