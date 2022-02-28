@@ -1,6 +1,6 @@
 {
   "auth": {
-    "MessengerRN": {
+    "Messenger": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -32,7 +32,7 @@
     }
   },
   "api": {
-    "MessengerRN": {
+    "Messenger": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -51,6 +51,14 @@
           ]
         }
       }
+    }
+  },
+  "function": {
+    "messenger7e657ecb": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
     }
   }
 }

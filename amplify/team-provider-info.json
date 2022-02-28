@@ -1,19 +1,25 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-messengerrn-staging-83547-authRole",
-      "UnauthRoleArn": "arn:aws:iam::828130038577:role/amplify-messengerrn-staging-83547-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::828130038577:role/amplify-messengerrn-staging-83547-authRole",
+      "AuthRoleName": "amplify-messenger-staging-82703-authRole",
+      "UnauthRoleArn": "arn:aws:iam::828130038577:role/amplify-messenger-staging-82703-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::828130038577:role/amplify-messenger-staging-82703-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-messengerrn-staging-83547-deployment",
-      "UnauthRoleName": "amplify-messengerrn-staging-83547-unauthRole",
-      "StackName": "amplify-messengerrn-staging-83547",
-      "StackId": "arn:aws:cloudformation:us-east-1:828130038577:stack/amplify-messengerrn-staging-83547/9df15750-865e-11ec-8015-12ab1d47bf47",
-      "AmplifyAppId": "d2kwgucn6en03f"
+      "DeploymentBucketName": "amplify-messenger-staging-82703-deployment",
+      "UnauthRoleName": "amplify-messenger-staging-82703-unauthRole",
+      "StackName": "amplify-messenger-staging-82703",
+      "StackId": "arn:aws:cloudformation:us-east-1:828130038577:stack/amplify-messenger-staging-82703/357fa680-9870-11ec-b22d-0e8a3c442c39",
+      "AmplifyAppId": "db92gh3527gve"
     },
     "categories": {
+      "function": {
+        "messenger7e657ecb": {
+          "deploymentBucketName": "amplify-messenger-staging-82703-deployment",
+          "s3Key": "amplify-builds/messenger7e657ecb-716453575a32664c3163-build.zip"
+        }
+      },
       "auth": {
-        "MessengerRN": {}
+        "Messenger": {}
       }
     }
   }
