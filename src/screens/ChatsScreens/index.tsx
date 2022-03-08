@@ -3,13 +3,19 @@ import { Pressable, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import { colors } from '@theme'
+import { colors, spacings } from '@theme'
 import { Screens } from '@config'
 import { TChatNavigationProp } from '@navigation'
-import { ChatList } from '@components'
+import { ChatList, ToggleButton, ToggleButtonGroup } from '@components'
+import { useStreamContext, ChatType } from '@hooks'
 
 export const ChatsScreens: FC = () => {
   const { navigate } = useNavigation<TChatNavigationProp>()
+  const {
+    handleSelectChatType,
+    chatType,
+    isSearching,
+  } = useStreamContext()
 
   const handleMewMessagePress = () => {
     navigate(Screens.Contacts)
@@ -17,10 +23,32 @@ export const ChatsScreens: FC = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.buttonGroupContainer}>
+        <ToggleButtonGroup
+          value={chatType}
+          onChange={handleSelectChatType}
+        >
+          <ToggleButton
+            value={ChatType.All}
+            title='All chats'
+            disabled={isSearching}
+          />
+          <ToggleButton
+            value={ChatType.Personal}
+            title='Personal'
+          />
+          <ToggleButton
+            value={ChatType.Group}
+            title='Groups'
+          />
+        </ToggleButtonGroup>
+      </View>
       <ChatList />
       <Pressable
         style={styles.newMessageButton}
         onPress={handleMewMessagePress}
+        accessibilityRole='button'
+        accessibilityLabel='New message'
       >
         <Ionicons
           name='chatbubble'
@@ -41,6 +69,10 @@ export const ChatsScreens: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: spacings.screen,
+  },
+  buttonGroupContainer: {
+    marginVertical: 24,
   },
   newMessageButton: {
     position: 'absolute',

@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 import {
+  StyleProp,
+  TextStyle,
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -11,14 +13,15 @@ import { Text } from '../Text'
 
 interface IButtonProps extends TouchableOpacityProps {
   title: string,
+  titleStyle?: StyleProp<TextStyle>,
 }
 
 export const Button: FC<IButtonProps> = ({
   title,
+  titleStyle,
   ...touchableOpacityProps
 }) => (
   <TouchableOpacity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...touchableOpacityProps}
     style={[
       styles.container,
@@ -29,7 +32,7 @@ export const Button: FC<IButtonProps> = ({
   >
     <Text
       bold
-      style={styles.title}
+      style={[styles.title, titleStyle]}
     >
       {title}
     </Text>

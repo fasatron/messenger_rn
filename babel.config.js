@@ -26,6 +26,7 @@ module.exports = {
           '@utils': './src/utils',
           '@graphql': './src/graphql',
           '@api': './src/api',
+          '@requests': './src/requests',
         },
       },
     ],

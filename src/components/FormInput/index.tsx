@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import {
   StyleSheet,
-  TextInput,
   View,
   TextInputProps,
 } from 'react-native'
@@ -11,9 +10,7 @@ import {
   useFormContext,
 } from 'react-hook-form'
 
-import { colors } from '@theme'
-
-import { Text } from '../Text'
+import { Input, Text } from '@components'
 
 interface IFormInputProps extends TextInputProps, UseControllerProps {
   defaultValue?: string,
@@ -32,13 +29,9 @@ export const FormInput: FC<IFormInputProps> = ({
 
   return (
     <View style={styles.container}>
-      <TextInput
-        // eslint-disable-next-line react/jsx-props-no-spreading
+      <Input
         {...textInputProps}
         style={styles.input}
-        placeholderTextColor={colors.secondary}
-        autoCapitalize='none'
-        autoCorrect={false}
         onChangeText={field.onChange}
         onBlur={field.onBlur}
         value={field.value}
@@ -60,11 +53,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   input: {
-    backgroundColor: 'white',
-    borderColor: '#e8e8e8',
+    borderWidth: 0,
     borderBottomWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginVertical: 5,
   },
 })

@@ -29,7 +29,6 @@ export const Text: FC<ITextProps> = ({
   ...textProps
 }) => (
   <RNText
-  // eslint-disable-next-line react/jsx-props-no-spreading
     {...textProps}
     style={[
       md && { fontSize: typography.fontSize.md },

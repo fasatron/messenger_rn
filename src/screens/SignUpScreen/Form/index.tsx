@@ -47,7 +47,6 @@ export const Form: FC<IFormProps> = ({ onSubmit }) => {
         Sign Up
       </Text>
       <FormProvider
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...formMethods}
       >
         <FormInput

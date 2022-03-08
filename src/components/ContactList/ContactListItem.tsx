@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { StyleSheet, Pressable, View } from 'react-native'
-import Avatar from 'react-native-user-avatar'
+import Avatar from '@muhzi/react-native-user-avatar'
 
 import { Text } from '@components'
 import { User } from '@api'
@@ -23,9 +23,10 @@ export const ContactListItem: FC<IContactListItemProps> = ({
     onPress={() => onContactPress(id)}
   >
     <Avatar
-      name={name}
+      userName={name}
       src={photoUrl}
       size={48}
+      backgroundColor='#585FC8'
     />
     <View style={styles.infoBlock}>
       <Text bold>{name}</Text>

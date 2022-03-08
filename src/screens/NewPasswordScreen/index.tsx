@@ -26,7 +26,6 @@ export const NewPasswordScreen: FC = () => {
         Create new password
       </Text>
       <FormProvider
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...formMethods}
       >
         <FormInput

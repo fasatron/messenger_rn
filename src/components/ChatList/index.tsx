@@ -1,94 +1,54 @@
 import React, { FC } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
-import subDays from 'date-fns/subDays'
+import { StyleSheet, View } from 'react-native'
+import {
+  ChannelList,
+  Chat,
+  EmptyStateIndicator,
+  EmptyStateProps,
+} from 'stream-chat-react-native'
 
-import { spacings } from '@theme'
+import { chatClient, ChatType, useStreamContext } from '@hooks'
+import { Text, Center } from '@components'
 
 import { ChatListItem } from './ChatListItem'
 
-const data = [
-  {
-    id: 1,
-    user: {
-      photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-      name: 'Darlene Steward',
-    },
-    lastMessage: {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quo repellat modi temporibus quae voluptas, fugiat vero atque debitis! Perspiciatis officia nisi amet labore, mollitia culpa quis doloremque enim iste?',
-      date: new Date().toISOString(),
-    },
-    unreadMessagesCount: 5,
-  },
-  {
-    id: 2,
-    user: {
-      photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-      name: 'Darlene Steward',
-    },
-    lastMessage: {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quo repellat modi temporibus quae voluptas, fugiat vero atque debitis! Perspiciatis officia nisi amet labore, mollitia culpa quis doloremque enim iste?',
-      date: subDays(new Date(), 1).toISOString(),
-    },
-    unreadMessagesCount: 0,
-  },
-  {
-    id: 3,
-    user: {
-      photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-      name: 'Darlene Steward',
-    },
-    lastMessage: {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quo repellat modi temporibus quae voluptas, fugiat vero atque debitis! Perspiciatis officia nisi amet labore, mollitia culpa quis doloremque enim iste?',
-      date: subDays(new Date(), 2).toISOString(),
-    },
-    unreadMessagesCount: 0,
-  },
-  {
-    id: 4,
-    user: {
-      photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-      name: 'Darlene Steward',
-    },
-    lastMessage: {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quo repellat modi temporibus quae voluptas, fugiat vero atque debitis! Perspiciatis officia nisi amet labore, mollitia culpa quis doloremque enim iste?',
-      date: subDays(new Date(), 3).toISOString(),
-    },
-    unreadMessagesCount: 0,
-  },
-  {
-    id: 5,
-    user: {
-      photoUrl: 'https://i1.wp.com/roohentertainment.com/wp-content/uploads/2018/06/user-avatar-1.png?',
-      name: 'Darlene Steward',
-    },
-    lastMessage: {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quo repellat modi temporibus quae voluptas, fugiat vero atque debitis! Perspiciatis officia nisi amet labore, mollitia culpa quis doloremque enim iste?',
-      date: subDays(new Date(), 4).toISOString(),
-    },
-    unreadMessagesCount: 0,
-  },
-]
+const CustomEmptyStateIndicator: FC<EmptyStateProps> = ({ listType }) => {
+  const { chatType } = useStreamContext()
 
-export const ChatList: FC = () => (
-  <View style={styles.container}>
-    <FlatList
-      data={data}
-      renderItem={({ item }) => (
-        <ChatListItem
-          user={item.user}
-          lastMessage={item.lastMessage}
-          unreadMessagesCount={item.unreadMessagesCount}
+  if (chatType !== ChatType.All) {
+    return (
+      <Center>
+        <Text lg>No results found</Text>
+      </Center>
+    )
+  }
+
+  if (listType && ['channel', 'message'].includes(listType)) {
+    return <EmptyStateIndicator listType={listType} />
+  }
+
+  return null
+}
+
+export const ChatList: FC = () => {
+  const { filters } = useStreamContext()
+
+  return (
+    // @ts-expect-error
+    <Chat client={chatClient}>
+      <View style={styles.channelListconteiner}>
+        <ChannelList
+          filters={filters}
+          Preview={ChatListItem}
+          EmptyStateIndicator={CustomEmptyStateIndicator}
         />
-      )}
-      keyExtractor={({ id }) => String(id)}
-    />
-  </View>
-)
+      </View>
+    </Chat>
+  )
+}
 
 const styles = StyleSheet.create({
-  container: {
+  channelListconteiner: {
     flex: 1,
-    paddingHorizontal: spacings.screen,
-    paddingTop: 20,
   },
 })

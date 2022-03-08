@@ -24,7 +24,6 @@ export const ConfirmCodeField: FC<IConfirmCodeFieldProps> = (props) => {
   return (
     <View>
       <CodeField
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...cellProps}
         ref={ref}
         value={value}

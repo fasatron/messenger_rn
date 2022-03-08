@@ -16,14 +16,16 @@ const getIconColor = (focused: boolean) => (focused
 
 export const defaultHeaderTitleStyle = {
   fontSize: typography.fontSize.lg,
+  fontFamily: typography.fontFamily.bold,
   color: colors.primary,
 }
 
 export const MainNavigator: FC = () => (
-  <Tab.Navigator screenOptions={{
-    tabBarShowLabel: false,
-    headerTitleStyle: defaultHeaderTitleStyle,
-  }}
+  <Tab.Navigator
+    screenOptions={{
+      tabBarShowLabel: false,
+      headerTitleStyle: defaultHeaderTitleStyle,
+    }}
   >
     <Tab.Screen
       name={Screens.ChatNavigator}

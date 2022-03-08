@@ -9,6 +9,7 @@ export enum Screens {
   Calls = 'Calls',
   Settings = 'Settings',
   ChatNavigator = 'ChatNavigator',
+  ChatRoom = 'ChatRoom',
 }
 
 // eslint-disable-next-line no-useless-escape

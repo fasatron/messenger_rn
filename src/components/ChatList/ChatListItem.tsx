@@ -1,77 +1,110 @@
 import React, { FC } from 'react'
 import { StyleSheet, View } from 'react-native'
-import Avatar from 'react-native-user-avatar'
+import Avatar from '@muhzi/react-native-user-avatar'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
+import { ChannelPreviewMessengerProps } from 'stream-chat-react-native'
+
 import isToday from 'date-fns/isToday'
 import isYesterday from 'date-fns/isYesterday'
 import format from 'date-fns/format'
+import { Channel } from 'stream-chat'
 
+import { Screens } from '@config'
 import { colors } from '@theme'
+import { ChatType, useAuthContext, useStreamContext } from '@hooks'
+import { TChatNavigationProp } from '@navigation'
 import { Text } from '@components'
-
-const DATE_FORMAT = 'dd.MM.yy'
+import IconRead from '@assets/images/icon-read.svg'
 
 const getFormattedDate = (dateISO: string) => {
   const date = Date.parse(dateISO)
 
-  if (isToday(date)) return 'Today'
+  if (isToday(date)) return format(date, 'hh.mm a')
   if (isYesterday(date)) return 'Yesterday'
 
-  return format(date, DATE_FORMAT)
+  return format(date, 'dd.MM.yy')
 }
 
-interface IChatListItemProps {
-  user: {
-    photoUrl: string,
-    name: string,
-  },
-  lastMessage: {
-    date: string,
-    content: string,
-  },
-  unreadMessagesCount: number,
-}
-
-export const ChatListItem: FC<IChatListItemProps> = ({
-  user: {
-    name,
-    photoUrl,
-  },
-  lastMessage: {
-    date,
-    content,
-  },
-  unreadMessagesCount,
+export const ChatListItem: FC<ChannelPreviewMessengerProps> = ({
+  latestMessagePreview,
+  unread,
+  channel,
 }) => {
-  const hasUnreadMessages = unreadMessagesCount > 0
+  const { user: currentUser } = useAuthContext()
+  const { navigate } = useNavigation<TChatNavigationProp>()
+  const { setChannel, getInterlocutor } = useStreamContext()
+
+  if (!latestMessagePreview?.messageObject) return null
+
+  const {
+    messageObject,
+    previews,
+    status,
+  } = latestMessagePreview
+
+  const isPersonalChat = channel.type === ChatType.Personal
+  const hasUnreadMessages = Boolean(unread && unread > 0)
+
+  const date = messageObject.created_at
+  const isMessageReceived = messageObject.status === 'received'
+  const isMyMessage = messageObject.user?.id === currentUser?.id
+  const messageContent = previews?.[1]?.text
+  const isMessageRead = status === 2
+
+  const user = getInterlocutor(channel as unknown as Channel)
+
+  const title = isPersonalChat ? user?.name : channel.data?.name
+  const image = isPersonalChat ? user?.image : null
+
+  const handlePress = async () => {
+    setChannel(channel as unknown as Channel)
+    navigate(Screens.ChatRoom)
+  }
 
   return (
-    <View style={[styles.container, hasUnreadMessages && styles.unread]}>
+    <TouchableOpacity
+      disallowInterruption
+      style={[styles.container, hasUnreadMessages && styles.unread]}
+      onPress={handlePress}
+    >
       <Avatar
-        name={name}
-        src={photoUrl}
+        userName={title}
+        src={image}
         size={48}
+        active={isPersonalChat && user?.online}
+        backgroundColor='#585FC8'
       />
       <View style={styles.infoBlock}>
         <View style={styles.line}>
-          <Text bold>{name}</Text>
+          <Text bold>{title}</Text>
           <Text
             sm
             secondary
             style={styles.date}
           >
-            {getFormattedDate(date)}
+            {date && getFormattedDate(date as string)}
           </Text>
         </View>
         <View style={styles.line}>
-          <Text
-            sm
-            secondary
-            ellipsizeMode='tail'
-            numberOfLines={1}
-            style={styles.lastMessage}
-          >
-            {content}
-          </Text>
+          {isMessageReceived && (
+            <View style={styles.lastMessageContainer}>
+              {isMyMessage && (
+                <IconRead
+                  style={styles.iconRead}
+                  fill={isMessageRead ? colors.accent : colors.secondary}
+                />
+              )}
+              <Text
+                sm
+                secondary
+                ellipsizeMode='tail'
+                numberOfLines={1}
+              >
+                {messageContent}
+              </Text>
+            </View>
+          )}
           {hasUnreadMessages && (
             <View style={styles.unreadMessagesBadge}>
               <Text
@@ -79,18 +112,19 @@ export const ChatListItem: FC<IChatListItemProps> = ({
                 bold
                 style={styles.unreadMessagesCount}
               >
-                {unreadMessagesCount}
+                {unread}
               </Text>
             </View>
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
 export const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     height: 64,
     flexDirection: 'row',
     alignItems: 'center',
@@ -105,7 +139,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     marginLeft: 15,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   line: {
     flexDirection: 'row',
@@ -113,13 +147,22 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'nowrap',
   },
-  lastMessage: {
+  lastMessageContainer: {
+    flexDirection: 'row',
     maxWidth: '90%',
+    alignItems: 'center',
+  },
+  iconRead: {
+    top: 1,
+    marginRight: 5,
   },
   date: {
     color: '#333333',
   },
   unreadMessagesBadge: {
+    position: 'absolute',
+    right: 0,
+    bottom: -6,
     width: 24,
     height: 24,
     borderRadius: 12,

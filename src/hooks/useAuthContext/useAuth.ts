@@ -51,7 +51,7 @@ export const useAuth = () => {
         setUser({
           id: authUser.attributes.sub,
           name: `${authUser.attributes.given_name} ${authUser.attributes.family_name}`,
-          photoUrl: null,
+          photoUrl: authUser.attributes.picture,
         })
       }
 
